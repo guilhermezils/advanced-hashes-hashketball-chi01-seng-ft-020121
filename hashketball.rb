@@ -170,22 +170,20 @@ end
  end
 
 
-def player_stats(player)
-   stats_hash = []
-   game_hash.each do |team, attributes|
-     game_hash[team].each do |attribute, value|
-       if attribute == :players
-         game_hash[team][:players].each do |name, stats|
-           if name == player
-             stats_hash = game_hash[team][:players][name]
-           end
-         end
-       end
-     end
-   end
-   stats_hash
- end
-
+def player_stats(input)
+  game_hash.each do |team, team_info|
+    team_info.each do |key, value|
+      if key == :players
+        value.each do |player|
+          if input == player[:player_name]
+            player.delete(:player_name) # having player name inside the hash was a bad idea!
+            return player
+          end
+        end
+      end
+    end
+  end
+end
  
 
 
