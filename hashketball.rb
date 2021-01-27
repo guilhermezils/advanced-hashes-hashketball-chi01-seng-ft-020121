@@ -126,4 +126,60 @@ def game_hash
   }
 end
 
-# Write code here
+
+		 def num_points_scored_raw(array, name)
+ 	array.each do |player|
+ 	return player[:num_points_scored] if player[:player_name] == name
+ 	end
+ 	return false
+ end
+
+  def num_points_scored(name)
+ 	 return num_points_scored_raw(game_hash[:home][:players],name) if num_points_scored_raw(game_hash[:home][:players],name)
+ 	 return num_points_scored_raw(game_hash[:away][:players],name) if num_points_scored_raw(game_hash[:away][:players],name)
+ end
+
+  def shoe_size_raw(array, name)
+ 	array.each do |player|
+ 	return player[:shoe] if player[:player_name] == name
+ 	end
+ 	return false
+ end
+
+  def shoe_size(name)
+ 	 return shoe_size_raw(game_hash[:home][:players],name) if shoe_size_raw(game_hash[:home][:players],name)
+ 	 return shoe_size_raw(game_hash[:away][:players],name) if shoe_size_raw(game_hash[:away][:players],name)
+ end
+
+  def team_colors(team_name)
+ 	game_hash.each { |location, team_data| return team_data[:colors] if team_data[:team_name] == team_name }
+ end
+
+  def team_names()
+ 	output = []
+ 	game_hash.each { |location, team_data| output.push(team_data[:team_name]) }
+ 	return output
+ end
+
+  def player_numbers(team_name)
+ 	jerseys = []
+ 	game_hash.each do |location, team_data| 
+ 		if team_data[:team_name] == team_name
+ 			team_data[:players].each {|a| jerseys.push(a[:number]) }
+ 		end
+ 	end
+ 	return jerseys
+ end
+
+  def player_stats(player_name)
+ 	game_hash.each do |location, team_data|
+ 		team_data[:players].each do |a| 
+ 			if a[:player_name] == player_name
+ 				my_hash = a
+ 				my_hash.shift
+ 				return my_hash
+ 			end
+ 		end
+ 	end
+ end
+
