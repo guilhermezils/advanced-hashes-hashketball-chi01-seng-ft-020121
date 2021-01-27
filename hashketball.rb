@@ -127,16 +127,17 @@ def game_hash
 end
 
 
-		 def num_points_scored_raw(array, name)
- 	array.each do |player|
- 	return player[:num_points_scored] if player[:player_name] == name
- 	end
- 	return false
- end
 
-def num_points_scored(name)
- 	 return points_raw(game_hash[:home][:players],name) if points_raw(game_hash[:home][:players],name)
- 	 return points_raw(game_hash[:away][:players],name) if points_raw(game_hash[:away][:players],name)
+  def num_points_scored(name)
+   points = nil
+   game_hash.each do |team, attributes|
+     game_hash[team][:players].each do |key, value|
+       if name == key
+         points = game_hash[team][:players][name][:points]
+       end
+     end
+   end
+   points
  end
 
   def shoe_size_raw(array, name)
