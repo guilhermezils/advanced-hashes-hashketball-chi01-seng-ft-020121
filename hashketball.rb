@@ -173,7 +173,7 @@ def num_points_scored(name)
 
 
 def player_stats(player)
-   stats_hash = {}
+   stats_hash = []
    game_hash.each do |team, attributes|
      game_hash[team].each do |attribute, value|
        if attribute == :players
