@@ -134,9 +134,9 @@ end
  	return false
  end
 
-  def num_points_scored(name)
- 	 return num_points_scored_raw(game_hash[:home][:players],name) if num_points_scored_raw(game_hash[:home][:players],name)
- 	 return num_points_scored_raw(game_hash[:away][:players],name) if num_points_scored_raw(game_hash[:away][:players],name)
+def num_points_scored(name)
+ 	 return points_raw(game_hash[:home][:players],name) if points_raw(game_hash[:home][:players],name)
+ 	 return points_raw(game_hash[:away][:players],name) if points_raw(game_hash[:away][:players],name)
  end
 
   def shoe_size_raw(array, name)
