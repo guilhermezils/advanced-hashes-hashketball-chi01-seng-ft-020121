@@ -170,7 +170,7 @@ end
  end
 
 
-def player_stats(input)
+def player_stats()
   game_hash.each do |team, team_info|
     team_info.each do |key, value|
       if key == :players
